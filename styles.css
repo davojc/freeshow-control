@@ -1,30 +1,60 @@
-.freeshow-inline-btn {
-  display: inline-block;
-  font: inherit;
-  line-height: 1;
-  padding: 0.15em 0.55em;
-  margin: 0 0.15em;
-  border-radius: 0.4em;
-  border: 1px solid var(--background-modifier-border);
-  background: var(--interactive-normal);
-  color: var(--text-normal);
+/* Defaults (will be overridden at runtime by the plugin settings) */
+:root {
+  --freeshow-show-bg: #2563eb;   /* blue */
+  --freeshow-show-fg: #ffffff;
+  --freeshow-slide-bg: #10b981;  /* green */
+  --freeshow-slide-fg: #ffffff;
+}
+
+/* The plugin already injects base styles.
+   This stylesheet provides sensible defaults, focus rings,
+   and print/readability tweaks. */
+
+/* Ensure buttons look nice even if the injected style hasn't loaded yet */
+.freeshow-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.9em;
+  line-height: 1.6;
   cursor: pointer;
   vertical-align: baseline;
+  margin: 0 0.15em;
+  transition: transform 0.02s ease, opacity 0.15s ease;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
-.freeshow-inline-btn:hover {
-  background: var(--interactive-hover);
+.freeshow-btn:hover { opacity: 0.9; }
+.freeshow-btn:active { transform: translateY(1px); }
+
+.freeshow-btn.show {
+  background: var(--freeshow-show-bg);
+  color: var(--freeshow-show-fg);
 }
 
-.freeshow-inline-btn.is-sending {
-  opacity: 0.6;
-  cursor: progress;
+.freeshow-btn.slide {
+  background: var(--freeshow-slide-bg);
+  color: var(--freeshow-slide-fg);
 }
 
-.freeshow-inline-btn.is-success {
-  outline: 2px solid var(--color-green);
+/* Accessibility */
+.freeshow-btn:focus-visible {
+  outline: 2px solid var(--interactive-accent, #7c3aed);
+  outline-offset: 2px;
 }
 
-.freeshow-inline-btn.is-error {
-  outline: 2px solid var(--color-red);
+/* Spacing when multiple buttons render inline */
+.freeshow-btn + .freeshow-btn { margin-left: 0.25em; }
+
+/* Print-friendly: show as outlined tags */
+@media print {
+  .freeshow-btn {
+    background: transparent !important;
+    color: inherit !important;
+    border: 1px solid var(--background-modifier-border, #aaa);
+  }
 }

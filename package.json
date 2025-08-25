@@ -1,7 +1,7 @@
 {
-	"name": "obsidian-sample-plugin",
+	"name": "freeshow-control",
 	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+	"description": "Freeshow App Control",
 	"main": "main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
