@@ -3,7 +3,7 @@
 	"name": "Freeshow App Control",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "This provides the ability to control Freeshow from within Obisidian.",
+	"description": "This provides the ability to control Freeshow App (https://freeshow.app) from within Obisidian.",
 	"author": "davojc",
 	"authorUrl": "",
 	"fundingUrl": "",
