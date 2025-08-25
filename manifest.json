@@ -1,7 +1,7 @@
 {
 	"id": "freeshow-control",
 	"name": "Freeshow App Control",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "This provides the ability to control Freeshow App (https://freeshow.app) from within Obisidian.",
 	"author": "davojc",
