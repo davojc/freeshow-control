@@ -1,0 +1,11 @@
+{
+	"id": "freeshow-control",
+	"name": "Freeshow App Control",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "This provides the ability to control Freeshow from within Obisidian allowing control of slides within Obsidian.",
+	"author": "davojc",
+	"authorUrl": "",
+	"fundingUrl": "",
+	"isDesktopOnly": false
+}

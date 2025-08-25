@@ -1,0 +1,30 @@
+.freeshow-inline-btn {
+  display: inline-block;
+  font: inherit;
+  line-height: 1;
+  padding: 0.15em 0.55em;
+  margin: 0 0.15em;
+  border-radius: 0.4em;
+  border: 1px solid var(--background-modifier-border);
+  background: var(--interactive-normal);
+  color: var(--text-normal);
+  cursor: pointer;
+  vertical-align: baseline;
+}
+
+.freeshow-inline-btn:hover {
+  background: var(--interactive-hover);
+}
+
+.freeshow-inline-btn.is-sending {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.freeshow-inline-btn.is-success {
+  outline: 2px solid var(--color-green);
+}
+
+.freeshow-inline-btn.is-error {
+  outline: 2px solid var(--color-red);
+}
