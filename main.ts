@@ -5,7 +5,7 @@ import {
 	Plugin,
 	PluginSettingTab,
 	Setting,
-	requestUrl, // ⬅️ use Obsidian's proxy to avoid CORS
+	requestUrl,
 } from "obsidian";
 
 interface FreeshowPluginSettings {
@@ -18,9 +18,9 @@ interface FreeshowPluginSettings {
 
 const DEFAULT_SETTINGS: FreeshowPluginSettings = {
 	apiEndpoint: "http://localhost:5505/",
-	showButtonBg: "#2563eb",   // blue
+	showButtonBg: "#2563eb",
 	showButtonText: "#ffffff",
-	slideButtonBg: "#10b981",  // green
+	slideButtonBg: "#10b981",
 	slideButtonText: "#000000",
 };
 
@@ -141,10 +141,6 @@ export default class FreeshowPlugin extends Plugin {
 		urlObj.searchParams.set("action", action);
 		urlObj.searchParams.set("data", JSON.stringify({ value }));
 
-		const body = JSON.stringify({ action, data: { value } });
-
-		console.log(urlObj.toString())
-
 		try {
 			const resp = await requestUrl({
 				url: urlObj.toString(),
@@ -153,14 +149,13 @@ export default class FreeshowPlugin extends Plugin {
 				throw: false,
 			});
 
-			console.log(resp);
-
 			if (resp.status >= 200 && resp.status < 300) {
 				new Notice(`${kind === "show" ? "Show" : "Slide"} sent: “${value}”`);
 			} else {
 				new Notice(`Freeshow responded with ${resp.status}`.trim());
 			}
 		} catch (e: any) {
+			console.log(urlObj.toString())
 			console.error(e);
 			new Notice(`Freeshow request failed: ${e?.message ?? e}`);
 		}
@@ -234,10 +229,8 @@ class FreeshowSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
-		containerEl.createEl("h2", { text: "Freeshow Controls" });
-
 		new Setting(containerEl)
-			.setName("Endpoint")
+			.setName("Freeshow App Endpoint")
 			.setDesc("Base URL of Freeshow API instance (e.g., http://localhost:5505/).")
 			.addText((text) =>
 				text
@@ -252,7 +245,8 @@ class FreeshowSettingTab extends PluginSettingTab {
 		containerEl.createEl("h3", { text: "Button styles" });
 
 		new Setting(containerEl)
-			.setName("Select a show — background")
+			.setName("Select Show: background")
+			.setDesc("Set the background color for the Select Show button.")
 			.addColorPicker((cp) =>
 				cp
 					.setValue(this.plugin.settings.showButtonBg)
@@ -263,7 +257,8 @@ class FreeshowSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Select a show — text")
+			.setName("Select Show: text")
+			.setDesc("Set the text color for the Select Show button.")
 			.addColorPicker((cp) =>
 				cp
 					.setValue(this.plugin.settings.showButtonText)
@@ -274,7 +269,8 @@ class FreeshowSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Select a slide — background")
+			.setName("Select Slide: background")
+			.setDesc("Set the background color for the Select Slide button.")
 			.addColorPicker((cp) =>
 				cp
 					.setValue(this.plugin.settings.slideButtonBg)
@@ -285,7 +281,8 @@ class FreeshowSettingTab extends PluginSettingTab {
 			);
 
 		new Setting(containerEl)
-			.setName("Select a slide — text")
+			.setName("Select Slide: text")
+			.setDesc("Set the text color for the Select Slide button.")
 			.addColorPicker((cp) =>
 				cp
 					.setValue(this.plugin.settings.slideButtonText)
@@ -294,9 +291,5 @@ class FreeshowSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					})
 			);
-
-		containerEl.createEl("p", {
-			text: 'Usage: =>|Show Name| (load a show); =>[Slide Name] (load a slide).',
-		});
 	}
 }
