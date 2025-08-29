@@ -163,10 +163,10 @@ export default class FreeshowPlugin extends Plugin {
 
 	applyThemeVars() {
 		const root = document.documentElement;
-		root.style.setProperty("--freeshow-show-bg", this.settings.showButtonBg);
-		root.style.setProperty("--freeshow-show-fg", this.settings.showButtonText);
-		root.style.setProperty("--freeshow-slide-bg", this.settings.slideButtonBg);
-		root.style.setProperty("--freeshow-slide-fg", this.settings.slideButtonText);
+		root.style.setProperty("--freeshow-control-show-bg", this.settings.showButtonBg);
+		root.style.setProperty("--freeshow-control-show-fg", this.settings.showButtonText);
+		root.style.setProperty("--freeshow-control-slide-bg", this.settings.slideButtonBg);
+		root.style.setProperty("--freeshow-control-slide-fg", this.settings.slideButtonText);
 	}
 
 	async loadSettings() {

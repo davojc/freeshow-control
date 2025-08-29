@@ -1,9 +1,9 @@
 /* Defaults (will be overridden at runtime by the plugin settings) */
 :root {
-  --freeshow-show-bg: #2563eb;   /* blue */
-  --freeshow-show-fg: #ffffff;
-  --freeshow-slide-bg: #10b981;  /* green */
-  --freeshow-slide-fg: #ffffff;
+  --freeshow-control-show-bg: #2563eb;   /* blue */
+  --freeshow-control-show-fg: #ffffff;
+  --freeshow-control-slide-bg: #10b981;  /* green */
+  --freeshow-control-slide-fg: #ffffff;
 }
 
 /* The plugin already injects base styles.
@@ -11,7 +11,7 @@
    and print/readability tweaks. */
 
 /* Ensure buttons look nice even if the injected style hasn't loaded yet */
-.freeshow-btn {
+.freeshow-control-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
@@ -28,31 +28,31 @@
   white-space: nowrap;
 }
 
-.freeshow-btn:hover { opacity: 0.9; }
-.freeshow-btn:active { transform: translateY(1px); }
+.freeshow-control-btn:hover { opacity: 0.9; }
+.freeshow-control-btn:active { transform: translateY(1px); }
 
-.freeshow-btn.show {
-  background: var(--freeshow-show-bg);
-  color: var(--freeshow-show-fg);
+.freeshow-control-btn.show {
+  background: var(--freeshow-control-show-bg);
+  color: var(--freeshow-control-show-fg);
 }
 
-.freeshow-btn.slide {
-  background: var(--freeshow-slide-bg);
-  color: var(--freeshow-slide-fg);
+.freeshow-control-btn.slide {
+  background: var(--freeshow-control-slide-bg);
+  color: var(--freeshow-control-slide-fg);
 }
 
 /* Accessibility */
-.freeshow-btn:focus-visible {
+.freeshow-control-btn:focus-visible {
   outline: 2px solid var(--interactive-accent, #7c3aed);
   outline-offset: 2px;
 }
 
 /* Spacing when multiple buttons render inline */
-.freeshow-btn + .freeshow-btn { margin-left: 0.25em; }
+.freeshow-control-btn + .freeshow-control-btn { margin-left: 0.25em; }
 
 /* Print-friendly: show as outlined tags */
 @media print {
-  .freeshow-btn {
+  .freeshow-control-btn {
     background: transparent !important;
     color: inherit !important;
     border: 1px solid var(--background-modifier-border, #aaa);
