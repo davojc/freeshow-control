@@ -29,7 +29,7 @@ export default class FreeshowPlugin extends Plugin {
 
 	async onload() {
 		await this.loadSettings();
-		this.injectStyles();
+		//this.injectStyles();
 		this.applyThemeVars();
 
 		this.addSettingTab(new FreeshowSettingTab(this.app, this));
@@ -159,44 +159,6 @@ export default class FreeshowPlugin extends Plugin {
 			console.error(e);
 			new Notice(`Freeshow request failed: ${e?.message ?? e}`);
 		}
-	}
-
-	/** Inject a static stylesheet once */
-	private injectStyles() {
-		if (document.getElementById("freeshow-plugin-styles")) return;
-
-		const style = document.createElement("style");
-		style.id = "freeshow-plugin-styles";
-		style.textContent = `
-			.freeshow-btn {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.35em;
-				border: none;
-				border-radius: 0.5rem;
-				padding: 0.1rem 0.5rem;
-				font-size: 0.9em;
-				line-height: 1.6;
-				cursor: pointer;
-				vertical-align: baseline;
-				margin: 0 0.15em;
-				transition: transform 0.02s ease, opacity 0.15s ease;
-				text-decoration: none;
-				white-space: nowrap;
-			}
-			.freeshow-btn:hover { opacity: 0.9; }
-			.freeshow-btn:active { transform: translateY(1px); }
-
-			.freeshow-btn.show {
-				background: var(--freeshow-show-bg);
-				color: var(--freeshow-show-fg);
-			}
-			.freeshow-btn.slide {
-				background: var(--freeshow-slide-bg);
-				color: var(--freeshow-slide-fg);
-			}
-		`;
-		document.head.appendChild(style);
 	}
 
 	applyThemeVars() {
